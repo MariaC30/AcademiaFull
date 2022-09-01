@@ -6,7 +6,7 @@ use App\Http\Controllers\MiControlador;
 use App\Http\Controllers\HeladeriaController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\DocenteController;
-
+use App\Http\Controllers\EstudianteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +41,7 @@ Route::get('/rutamulti/{a}/{b}',[MiControlador::class,'multipli']);
 Route::get('/heladeria/{a}', [HeladeriaController::class,'totalHelado']);
 Route::resource('cursos', CursoController::class);
 Route::resource('docente', DocenteController::class);
+Route::resource('estudiantes',EstudianteController::class);
 
 
 

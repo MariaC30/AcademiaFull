@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo','crear curso')
+@section('titulo','Añadir Estudiante')
 @section('contenido')
 
 <form action="/estudiantes" method="POST" enctype="multipart/form-data">

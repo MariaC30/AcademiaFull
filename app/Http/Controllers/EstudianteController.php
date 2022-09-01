@@ -45,7 +45,7 @@ class EstudianteController extends Controller
         $alumno -> departamentoExp = $request->input('departamentoExp');
         $alumno -> municipioExp = $request->input('municipioExp');
         $alumno -> fechaExp = $request->input('fechaExp');
-        $alumno -> nombres = $request->input('	nombres');
+        $alumno -> nombres = $request->input('nombres');
         $alumno -> primerApellido = $request->input('primerApellido');
         $alumno -> segundoApellido = $request->input('segundoApellido');
         $alumno -> genero = $request->input('genero');
