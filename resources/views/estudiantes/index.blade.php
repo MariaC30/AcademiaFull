@@ -24,4 +24,4 @@
     <br>
     <a href="/estudiantes/create" class="btn btn-primary">Agregar Estudiante</a>
 
-
+@endsection
