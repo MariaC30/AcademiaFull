@@ -16,25 +16,22 @@ return new class extends Migration
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id('Estudiante');
             $table->timestamps();
-            $table->string('tipoDocumento');
+            $table->text('tipoDocumento');
             $table->integer('numeroDocumento');
             $table->string('documentoIdentidad');
-            $table->string('paisExpedocumento');
-            $table->string('departamentoExp');
-            $table->string('municipioExp');
             $table->date('fechaExp');
-            $table->string('nombres');
-            $table->string('primerApellido');
-            $table->string('segundoApellido');
-            $table->string('genero');
-            $table->date('fechaNacimiento');
-            $table->string('paisNacimiento');
-            $table->string('departamentoNacimiento');
-            $table->string('municipioNacimiento');
-            $table->string('estratoSocial');
-            $table->integer('idCursos');
-            $table->integer('idMunicipiosExp');
-            $table->integer('idMunicipioNac');
+            $table->unsignedBigInteger('idMunicipiosExp');
+            $table->text('nombres');
+            $table->text('primerApellido');
+            $table->text('segundoApellido');
+            $table->text('genero');
+            $table->unsignedBigInteger('idMunicipioNac');
+            $table->unsignedBigInteger('idCursos');
+            $table->integer('estratoSocial');
+
+            $table->foreign('idMunicipiosExp')->references('id')->on('municipios')->onDelete('cascade')->onUpdate('cascade');;
+            $table->foreign('idMunicipioNac')->references('id')->on('municipios')->onDelete('cascade')->onUpdate('cascade');;
+            $table->foreign('idCursos')->references('id')->on('cursos')->onDelete('cascade')->onUpdate('cascade');;
         });
     }
 
