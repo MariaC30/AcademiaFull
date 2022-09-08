@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id('idDepartamento');
             $table->timestamps();
             $table->string('nombreDepartamento');
-            $table->integer('idPais');
-            $table->integer('idMunicipio');
+            $table->unsignedBigInteger('idPais');
+            $table->unsignedBigInteger('idMunicipio');
         });
     }
+
 
     /**
      * Reverse the migrations.

@@ -32,9 +32,14 @@ return new class extends Migration
             $table->string('departamentoNacimiento');
             $table->string('municipioNacimiento');
             $table->string('estratoSocial');
-            $table->integer('idCursos');
-            $table->integer('idMunicipiosExp');
-            $table->integer('idMunicipioNac');
+            $table->unsignedBigInteger('idCursos');
+            $table->unsignedBigInteger('idMunicipiosExp');
+            $table->unsignedBigInteger('idMunicipioNac');
+            $table->foreign('idMunicipiosExp')->references('id')->on('municipios')->onDelete('cascade')->onUpdate('cascade');;
+            $table->foreign('idMunicipioNac')->references('id')->on('municipios')->onDelete('cascade')->onUpdate('cascade');;
+            $table->foreign('idCursos')->references('id')->on('cursos')->onDelete('cascade')->onUpdate('cascade');;
+
+
         });
     }
 
@@ -48,3 +53,4 @@ return new class extends Migration
         Schema::dropIfExists('estudiantes');
     }
 };
+
