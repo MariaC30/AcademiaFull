@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiantes;
+use App\Models\Municipios;
 use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
@@ -41,21 +42,15 @@ class EstudianteController extends Controller
         $alumno -> tipoDocumento = $request->input('tipoDocumento');
         $alumno -> numeroDocumento = $request->input('numeroDocumento');
         $alumno -> documentoIdentidad = $request->input('documentoIdentidad');
-        $alumno -> paisExpedocumento = $request->input('paisExpedocumento');
-        $alumno -> departamentoExp = $request->input('departamentoExp');
-        $alumno -> municipioExp = $request->input('municipioExp');
         $alumno -> fechaExp = $request->input('fechaExp');
-        $alumno -> nombres = $request->input('	nombres');
+        $alumno ->idMunicipiosExp = $request->input('idMunicipiosExp');
+        $alumno -> nombres = $request->input('nombres');
         $alumno -> primerApellido = $request->input('primerApellido');
         $alumno -> segundoApellido = $request->input('segundoApellido');
         $alumno -> genero = $request->input('genero');
-        $alumno -> fechaNacimiento = $request->input('fechaNacimiento');
-        $alumno -> paisNacimiento = $request->input('paisNacimiento');
-        $alumno -> departamentoNacimiento = $request->input('departamentoNacimiento');
-        $alumno -> municipioNacimiento = $request->input('	municipioNacimiento');
         $alumno -> estratoSocial = $request->input('estratoSocial');
-        $alumno -> idCursos = $request->input('idCursos');
         $alumno -> idMunicipiosExp = $request->input('idMunicipiosExp');
+        $alumno -> idCursos = $request->input('idCursos');
         $alumno -> idMunicipioNac = $request->input('idMunicipioNac');
         if($request->hasFile('Document')){
             $alumno ->Document = $request->file('Document')->store('public/estudiantes');
@@ -75,7 +70,27 @@ class EstudianteController extends Controller
     public function show($id)
     {
         $alumno = Estudiantes::find($id);
-        return view('estudiantes.show', compact('alumno'));
+        $query1 = Municipios::join(
+            'estudiantes','estudiantes.id muni.expedi','municipios.id'
+        )
+        ->join('departamentos','departamentos.id','municipios.id_departa')
+        ->join('paises','paises.id','departamentos.id_country')
+        ->where('estudiantes.id',$id)
+        ->select('municipios.nom_muni as nomMuni','departamentos.nom_departa as NomDepart','paises.nom_pais as nomPais')
+        ->get();
+
+        $query2 = Municipios::join(
+            'estudiantes','estudiantes.id_muni_naci','municipios.id'
+        )
+        ->join('departamentos','departamentos.id','municipios.id_departa')
+        ->join('paises','paises.id','departamentos.id_country')
+        ->where('estudiantes.id',$id)
+        ->select('municipios.nom_muni as nomMuni','departamentos.nom_departa as NomDepart','paises.nom_pais as nomPais')
+        ->get();
+
+        //return $muniExpedi;
+
+        return view('estudiantes.show', compact('query1','query2'));
         //return view('estudiantes.create');
     }
 
