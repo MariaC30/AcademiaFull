@@ -1,23 +1,8 @@
 @extends('layouts.app')
-
 @section('titulo', 'crear curso')
-
 @section('contenido')
-
  <form action="/docente" method="POST" enctype="multipart/form-data">
     @csrf
-
-    {{-- @if($errors->any())
-        @foreach ($errors->all() as $alerta)
-        <div class="alert alert-danger">
-            <ul>
-                <li>{{$alerta}}</li>
-            </ul>
-        </div> --}}
-
-        {{--@endforeach
-    @endif--}}
-
     <br>
     <div class="container">
         <h1>Agregar Docente</h1>
