@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('nombreDepartamento');
             $table->unsignedBigInteger('idPais');
             $table->unsignedBigInteger('idMunicipio');
+            $table->foreign('idPais')->references('paises')->on('paises')->onDelete('cascade')->onUpdate('cascade');;
+            $table->foreign('idMunicipio')->references('idMunicipio')->on('municipios')->onDelete('cascade')->onUpdate('cascade');;
+
+
         });
     }
 

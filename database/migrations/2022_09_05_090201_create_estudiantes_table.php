@@ -29,8 +29,8 @@ return new class extends Migration
             $table->unsignedBigInteger('idCursos');
             $table->integer('estratoSocial');
 
-            $table->foreign('idMunicipiosExp')->references('id')->on('municipios')->onDelete('cascade')->onUpdate('cascade');;
-            $table->foreign('idMunicipioNac')->references('id')->on('municipios')->onDelete('cascade')->onUpdate('cascade');;
+            $table->foreign('idMunicipiosExp')->references('idMunicipios')->on('municipios')->onDelete('cascade')->onUpdate('cascade');;
+            $table->foreign('idMunicipioNac')->references('idMunicipios')->on('municipios')->onDelete('cascade')->onUpdate('cascade');;
             $table->foreign('idCursos')->references('id')->on('cursos')->onDelete('cascade')->onUpdate('cascade');;
         });
     }

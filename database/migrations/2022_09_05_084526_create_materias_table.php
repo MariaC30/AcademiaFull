@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('intensidadHoraria');
             $table->unsignedBigInteger('id_Estudiante');
 
-            $table->foreign('id_Estudiante')->references('id')->on('estudiantes')->onDelete('cascade')->onUpdate('cascade');;
+            $table->foreign('id_Estudiante')->references('Estudiante')->on('estudiantes')->onDelete('cascade')->onUpdate('cascade');;
 
         });
     }
