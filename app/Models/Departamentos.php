@@ -12,6 +12,7 @@ class Departamentos extends Model
     public function Municipios(){
         return $this->hasMany(Municipios::class);
 
+
     }
     public function Paises(){
         return $this->belongsTo(Paises::class);
