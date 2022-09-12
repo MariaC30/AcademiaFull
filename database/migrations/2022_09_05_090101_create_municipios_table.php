@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('municipios', function (Blueprint $table) {
-            table->id('idMunicipios');
+            $table->id('idMunicipios');
             $table->timestamps();
             $table->string('nombreMunicipio');
             $table->unsignedBigInteger('idDepartamento');
