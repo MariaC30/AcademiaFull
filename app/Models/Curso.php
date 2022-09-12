@@ -11,7 +11,7 @@ class Curso extends Model
     protected $fillable = ['nombre', 'descripcion', 'imagen', 'duración'];
     use HasFactory;
     public function Estudiantes(){
-        return $this->hasMany(Estudiantes::class);
+        return $this->belongsTo(Estudiantes::class);
 
     }
 

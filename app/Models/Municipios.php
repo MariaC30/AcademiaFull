@@ -9,7 +9,11 @@ class Municipios extends Model
 {
     use HasFactory;
 
-    public function estudiantes(){
+    public function Estudiantes(){
         return $this->hasMany(Estudiantes::class);
+    }
+    public function Departamentos(){
+        return $this->belongsTo(Departamentos::class);
+
     }
 }

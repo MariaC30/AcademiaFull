@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departamentos;
 use App\Models\Estudiantes;
 use App\Models\Municipios;
+use App\Models\Paises;
 use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
@@ -27,7 +29,10 @@ class EstudianteController extends Controller
      */
     public function create()
     {
-        return view('estudiantes.create');
+        $paises = Paises::all();
+        $departamentos = Departamentos::all();
+        return view('estudiantes.create', compact('paises', 'departamentos'));
+
     }
 
     /**
