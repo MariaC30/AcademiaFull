@@ -53,10 +53,12 @@ class EstudianteController extends Controller
         $alumno -> primerApellido = $request->input('primerApellido');
         $alumno -> segundoApellido = $request->input('segundoApellido');
         $alumno -> genero = $request->input('genero');
-        $alumno -> estratoSocial = $request->input('estratoSocial');
-        $alumno -> idMunicipiosExp = $request->input('idMunicipiosExp');
-        $alumno -> idCursos = $request->input('idCursos');
         $alumno -> idMunicipioNac = $request->input('idMunicipioNac');
+        $alumno -> idCursos = $request->input('idCursos');
+        $alumno -> estratoSocial = $request->input('estratoSocial');
+
+
+
         if($request->hasFile('Document')){
             $alumno ->Document = $request->file('Document')->store('public/estudiantes');
         }
