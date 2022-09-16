@@ -10,9 +10,9 @@
                 <div class="card" style="width: 18rem;">
                     <img style="height: 150px " class="card-img-top" src="{{Storage::url($item->imagen)}}" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">{{$item->nombre}} {{$item->apellidos}}</h4>
-                        <p class="card-text">Titulo Estudiantil: {{$item->tituloE}}</p>
-                        <a href="/estudiantes/{{$item->id}}" class="btn btn-primary">Ver Detalle</a>
+                        <h4 class="card-title">{{$item->nombres}} {{$item->primerApellido}}</h4>
+                        <p class="card-text">Documento: {{$item->numeroDocumento}}</p>
+                        <a href="/estudiantes/{{$item->Estudiante}}" class="btn btn-primary">Ver Detalle</a>
                     </div>
                 </div>
             </div>{{--cierre de col--}}

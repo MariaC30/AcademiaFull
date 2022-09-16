@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Departamentos extends Model
 {
+    protected $fillable = ['idDepartamento', 'nombreDepartamento', 'idPais'];
     use HasFactory;
 
     public function Municipios(){

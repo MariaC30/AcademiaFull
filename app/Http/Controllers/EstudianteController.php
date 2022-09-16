@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curso;
 use App\Models\Departamentos;
 use App\Models\Estudiantes;
 use App\Models\Municipios;
@@ -31,7 +32,9 @@ class EstudianteController extends Controller
     {
         $paises = Paises::all();
         $departamentos = Departamentos::all();
-        return view('estudiantes.create', compact('paises', 'departamentos'));
+        $municipios = Municipios::all();
+        $cursos = Curso::all();
+        return view('estudiantes.create', compact('paises', 'departamentos', 'municipios', 'cursos'));
 
     }
 
@@ -46,7 +49,6 @@ class EstudianteController extends Controller
         $alumno = new Estudiantes(); //instancia
         $alumno -> tipoDocumento = $request->input('tipoDocumento');
         $alumno -> numeroDocumento = $request->input('numeroDocumento');
-        $alumno -> documentoIdentidad = $request->input('documentoIdentidad');
         $alumno -> fechaExp = $request->input('fechaExp');
         $alumno ->idMunicipiosExp = $request->input('idMunicipiosExp');
         $alumno -> nombres = $request->input('nombres');
@@ -56,14 +58,11 @@ class EstudianteController extends Controller
         $alumno -> idMunicipioNac = $request->input('idMunicipioNac');
         $alumno -> idCursos = $request->input('idCursos');
         $alumno -> estratoSocial = $request->input('estratoSocial');
-
-
-
-        if($request->hasFile('Document')){
-            $alumno ->Document = $request->file('Document')->store('public/estudiantes');
+        if($request->hasFile('documentoIdentidad')){
+            $alumno ->documentoIdentidad = $request->file('documentoIdentidad')->store('public/estudiantes');
         }
         $alumno->save();
-        return view('estudiantes.add');
+        return view('estudiantes.add', compact('alumno'));
         //return $request->all();
 
     }

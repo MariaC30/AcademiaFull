@@ -14,5 +14,11 @@ class Curso extends Model
         return $this->belongsTo(Estudiantes::class);
 
     }
+    public function cursos_materias(){
+        return $this->belongsToMany(Materias::class);
+
+    }
 
 }
+
+

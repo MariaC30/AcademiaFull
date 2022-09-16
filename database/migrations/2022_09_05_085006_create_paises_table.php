@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id('paises');
             $table->timestamps();
             $table->string('nombrePais');
-            $table->unsignedBigInteger('idDepartamento');
 
-            $table->foreign('idDepartamento')->references('idDepartamento')->on('departamentos')->onDelete('cascade')->onUpdate('cascade');;
+
+            //$table->foreign('idDepartamento')->references('idDepartamento')->on('departamentos')->onDelete('cascade')->onUpdate('cascade');;
 
         });
 

@@ -12,4 +12,7 @@ class Materias extends Model
         return $this->hasMany(Docente::class);
 
     }
+    public function cursos_materias(){
+        return $this->belongsToMany(Curso::class);
+    }
 }

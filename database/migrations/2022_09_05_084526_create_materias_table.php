@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id('materia');
             $table->timestamps();
             $table->string('nombreMateria');
-            $table->unsignedBigInteger('intensidadHoraria');
-            $table->unsignedBigInteger('id_Estudiante');
+            $table->string('intensidadHoraria');
+            //$table->unsignedBigInteger('id_Estudiante');
 
-            $table->foreign('id_Estudiante')->references('Estudiante')->on('estudiantes')->onDelete('cascade')->onUpdate('cascade');;
+            // $table->foreign('id_Estudiante')->references('Estudiante')->on('estudiantes')->onDelete('cascade')->onUpdate('cascade');;
 
         });
     }
