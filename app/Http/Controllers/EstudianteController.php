@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
 {
+    public $primaryKey = 'Estudiante';
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +21,6 @@ class EstudianteController extends Controller
     {
         $alumno = Estudiantes::all();
         return view('estudiantes.index', compact('alumno'));
-        //return view('estudiantes.create');
     }
 
     /**
@@ -46,6 +46,7 @@ class EstudianteController extends Controller
      */
     public function store(Request $request)
     {
+
         $alumno = new Estudiantes(); //instancia
         $alumno -> tipoDocumento = $request->input('tipoDocumento');
         $alumno -> numeroDocumento = $request->input('numeroDocumento');
@@ -59,7 +60,10 @@ class EstudianteController extends Controller
         $alumno -> idCursos = $request->input('idCursos');
         $alumno -> estratoSocial = $request->input('estratoSocial');
         if($request->hasFile('documentoIdentidad')){
-            $alumno ->documentoIdentidad = $request->file('documentoIdentidad')->store('public/estudiantes');
+            $alumno ->documentoIdentidad = $request->file('documentoIdentidad')->store('public/estudiantes/documents');
+        }
+        if($request->hasFile('FotoPerfil')){
+            $alumno->FotoPerfil = $request->file('FotoPerfil')->store('public/estudiantes/images');
         }
         $alumno->save();
         return view('estudiantes.add', compact('alumno'));
@@ -73,30 +77,31 @@ class EstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($primaryKey)
     {
-        $alumno = Estudiantes::find($id);
+
+        $alumno = Estudiantes::findEstudiante($primaryKey);
         $query1 = Municipios::join(
-            'estudiantes','estudiantes.id muni.expedi','municipios.id'
+            'estudiantes','estudiantes.idMunicipiosExp','municipios.idDepartamento'
         )
-        ->join('departamentos','departamentos.id','municipios.id_departa')
-        ->join('paises','paises.id','departamentos.id_country')
-        ->where('estudiantes.id',$id)
-        ->select('municipios.nom_muni as nomMuni','departamentos.nom_departa as NomDepart','paises.nom_pais as nomPais')
+        ->join('departamentos','departamentos.idDepartamento','municipios.idDepartamento')
+        ->join('paises','paises.paises','departamentos.idPais')
+        ->where('estudiantes.Estudiante',$alumno)
+        ->select('municipios.nombreMunicipio as nomMuni','departamentos.nombreDepartamento as NomDepart','paises.nombrePais as nomPais')
         ->get();
 
         $query2 = Municipios::join(
-            'estudiantes','estudiantes.id_muni_naci','municipios.id'
+            'estudiantes','estudiantes.idMunicipioNac','municipios.idMunicipios'
         )
-        ->join('departamentos','departamentos.id','municipios.id_departa')
-        ->join('paises','paises.id','departamentos.id_country')
-        ->where('estudiantes.id',$id)
-        ->select('municipios.nom_muni as nomMuni','departamentos.nom_departa as NomDepart','paises.nom_pais as nomPais')
+        ->join('departamentos','departamentos.idDepartamento','municipios.idDepartamento')
+        ->join('paises','paises.paises','departamentos.idPais')
+        ->where('estudiantes.Estudiante',$alumno)
+        ->select('municipios.nombreMunicipio as nomMuni','departamentos.nombreDepartamento as NomDepart','paises.nombrePais as nomPais')
         ->get();
 
         //return $muniExpedi;
-
-        return view('estudiantes.show', compact('query1','query2'));
+        return view('estudiantes.show', compact('alumno'));
+       //return view('estudiantes.show', compact('query1','query2'));
         //return view('estudiantes.create');
     }
 
@@ -106,9 +111,9 @@ class EstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($primaryKey)
     {
-        $alumno = Estudiantes::find($id);
+        $alumno = Estudiantes::findEstudiante($primaryKey);
         return view('estudiantes.edit', compact('alumno'));
     }
 
@@ -119,12 +124,12 @@ class EstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $primaryKey)
     {
-        $alumno = Estudiantes::find($id);
-        $alumno ->fill($request->except('Document'));
-        if($request->hasFile('Document')){
-            $alumno->Document = $request->file('Document')->store('public/estudiantes');
+        $alumno = Estudiantes::findEstudiante($primaryKey);
+        $alumno ->fill($request->except('documentoIdentidad'));
+        if($request->hasFile('documentoIdentidad')){
+            $alumno->Document = $request->file('documentoIdentidad')->store('public/estudiantes/documents');
         }
         $alumno->save();
         return view('estudiantes.upload');
@@ -136,10 +141,15 @@ class EstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($primaryKey)
     {
-        $alumno = Estudiantes::find($id);
-        $alumno ->delete();
-        return view('estudiantes.delete');
+        $alumno = Estudiantes::findEstudiante($primaryKey);
+        $urlImagen = $alumno->FotoPerfil;
+        $nombreImagen = str_replace('public/','\storage\\',$urlImagen);
+        $rutaCompleta = public_path().$nombreImagen;
+        unlink($rutaCompleta);
+        $alumno ->destroy($alumno);
+        // return view('estudiantes.delete');
+
     }
 }

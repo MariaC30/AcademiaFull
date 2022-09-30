@@ -35,7 +35,7 @@
     <div class="form-group">
         <label for="imagen">Cargue la imagen del curso</label>
         <br>
-        <input id="imagen" class=" " type="file" name="imagen">
+        <input id="imagen" class=" " type="file" name="imagen" accept="image/*">
     </div>
     <button class="btn btn-dark" type="submit">Crear</button>
 

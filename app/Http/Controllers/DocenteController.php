@@ -44,11 +44,11 @@ class DocenteController extends Controller
         $docentico -> edad = $request->input('edad');
         $docentico -> fecha = $request->input('fecha');
         if($request->hasFile('imagen')){
-            $docentico->imagen = $request->file('imagen')->store('public/docentes');
+            $docentico->imagen = $request->file('imagen')->store('public/docentes/images');
            }
-           if($request->hasFile('Document')){
-            $docentico->Document = $request->file('Document')->store('public/docentes');
-           }
+        if($request->hasFile('Document')){
+            $docentico->Document = $request->file('Document')->store('public/docentes/documents');
+        }
         $docentico->save();
         return view('docentes.add');
         //return $request->all();
@@ -92,11 +92,11 @@ class DocenteController extends Controller
         $docentico = Docente::find($id);
         $docentico->fill($request->except('imagen'));
         if($request->hasFile('imagen')){
-            $docentico->imagen = $request->file('imagen')->store('public/docentes');
+            $docentico->imagen = $request->file('imagen')->store('public/docentes/imagen');
         }
         $docentico->fill($request->except('Document'));
         if($request->hasFile('Document')){
-            $docentico->Document = $request->file('Document')->store('public/docentes');
+            $docentico->Document = $request->file('Document')->store('public/docentes/document');
         }
         $docentico->save();
         return view('docentes.upload');

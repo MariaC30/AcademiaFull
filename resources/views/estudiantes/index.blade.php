@@ -7,8 +7,8 @@
     <div class="row">
         @foreach ($alumno as $item)
             <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <img style="height: 150px " class="card-img-top" src="{{Storage::url($item->imagen)}}" alt="Card image cap">
+                <div class="card w-50" >
+                    <img style="height: 150px " class="card-img-top" src="{{Storage::url($item->FotoPerfil)}}" alt="FotoPerfil">
                     <div class="card-body">
                         <h4 class="card-title">{{$item->nombres}} {{$item->primerApellido}}</h4>
                         <p class="card-text">Documento: {{$item->numeroDocumento}}</p>

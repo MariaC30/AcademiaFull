@@ -6,7 +6,7 @@
     <div class="row">
         <div class="m-auto ">
             <h1>Estudiante</h1>
-            <img width="300" src="{{Storage::url($alumno->imagen)}}">
+            <img width='300' src="{{Storage::url($alumno->FotoPerfil)}}" alt="FotoPerfil">
             <p class="card-text">Tipo Documento: {{$alumno->tipoDocumento}}</p>
             <p class="card-text">Numero Documento: {{$alumno->numeroDocumento}}</p>
             <p class="card-text">Carge Documento Id:{{$alumno->documentoIdentidad}}</p>
@@ -18,14 +18,19 @@
             <p class="card-text">ID Municipio Nacimiento: {{$alumno->idMunicipioNac}}</p>
             <p class="card-text">Estrato Social: {{$alumno->estratoSocial}}</p>
 
-        </div><br>
-
-        <a href="/estudiantes/{{$alumno->id}}/edit" class="btn btn-info">Editar Estudiante</a>
-
-        <form action="/estudiantes/{{$alumno->id}}" method="post">
+        <a href="/estudiantes/{{$alumno->Estudiante}}/edit" class="btn btn-info">Editar Estudiante</a>
+        <br>
+        <br>
+        <form action="/estudiantes/{{$alumno->Estudiante}}" method="post">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger"> Eliminar </button>
         </form>
-    </div>
+        <br>
+
+        </div>
+     </div>
 @endsection
+
+
+

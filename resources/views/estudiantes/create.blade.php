@@ -12,7 +12,13 @@
             </div>
             <div class="form-group">
                 <label for="tipoDocumento">Tipo Documento</label>
-                <input id="tipoDocumento" class="form-control" type="text" name="tipoDocumento">
+                <select id="tipoDocumento" class="form-control" name="tipoDocumento">
+                    <option value="CC">Cedula</option>
+                    <option value="TI">Tarjeta de identidad</option>
+                    <option value="PAS">Pasaporte</option>
+                    <option value="REG">Registro civil</option>
+                    <option value="CE">Cedula de extrangería</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="numeroDocumento">Numero Documento</label>
@@ -21,7 +27,7 @@
             <div class="form-group">
                 <label for="documentoIdentidad">Cargue el Documento de Id</label>
                 <br>
-                <input id="documentoIdentidad" class="" type="file" name="documentoIdentidad" >
+                <input id="documentoIdentidad" class="" type="file" name="documentoIdentidad" accept=".pdf" >
             </div>
             <div class="form-group">
                 <label for="fechaExp">Fecha Expediccion</label>
@@ -40,17 +46,25 @@
                 <input id="segundoApellido" class="form-control" type="text" name="segundoApellido" >
                 <div class="form-group">
                     <label for="genero">Genero</label>
-                    <input id="genero" class="form-control" type="text" name="genero" >
-                </div>
-            </div>
-                <div class="form-group">
-                    <label for="idPaisNacim">Pais de nacimiento</label>
-                    <select class="form-control" name="idPaisNacim" id="idPaisNacim">
-                        @foreach ($paises as $paisNac)
-                            <option value="">{{$paisNac->nombrePais}}</option>
-                        @endforeach
+                    <select id="genero" class="form-control" name="genero" >
+                        <option value="F">Femenino</option>
+                        <option value="M">Masculino</option>
                     </select>
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Foto de Perfil</label>
+                <br>
+                <input id="imagen" class=" " type="file" name="FotoPerfil" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="idPaisNacim">Pais de nacimiento</label>
+                <select class="form-control" name="idPaisNacim" id="idPaisNacim">
+                     @foreach ($paises as $paisNac)
+                        <option value="">{{$paisNac->nombrePais}}</option>
+                    @endforeach
+                </select>
+            </div>
                 <div class="form-group">
                     <label for="idDepNac">Departamento de nacimiento</label>
                     <select class="form-control" name="idDepNac" id="idDepNac">
@@ -101,7 +115,7 @@
                 </div>
                 <div class="form-group">
                     <label for="estratoSocial">Estrato Social</label>
-                    <input id="estratoSocial" class="form-control" type="text" name="estratoSocial" >
+                    <input id="estratoSocial" class="form-control" type="number" name="estratoSocial" min="1" max="6">
                 </div>
                 <br>
                 <br>
@@ -113,3 +127,4 @@
  <br>
 
 @endsection
+--

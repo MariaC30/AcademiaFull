@@ -52,7 +52,7 @@ class CursoController extends Controller
        }
        $cursito->save(); // con el comando save se registra la info del array en la bd
        //return $cursito;
-        return 'Guardado exitosamente';
+        return view('cursos.add', compact('cursito'));
       // return $request->input('nombre');
 
     }

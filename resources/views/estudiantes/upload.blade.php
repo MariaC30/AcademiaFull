@@ -7,6 +7,6 @@
         <div class="alert alert-danger" role="alert">
             El Estudiante  ha sido Actualizado  con exito...
         </div>
-        <a href="/estudiante" class="m-5 btn btn-primary">Volver</a>
+        <a href="/estudiantes" class="m-5 btn btn-primary">Volver</a>
     </div>
 @endsection

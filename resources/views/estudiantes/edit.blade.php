@@ -3,7 +3,7 @@
 @section('titulo', 'Editar Estudiante')
 
 @section('contenido')
-    <form action="/estudiante/{{$alumno->id}}" method="POST" enctype="multipart/form-data">
+    <form action="/estudiantes/{{$alumno->Estudiante}}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <br>
@@ -52,7 +52,8 @@
             <label for="estratoSocial">Editar Estrato Social Estudiante</label>
             <input id="estratoSocial" class="form-control" type="text" name="estratoSocial" value="{{$alumno->estratoSocial}}">
         </div>
-
+        <button  class="btn btn-info"   type="submit">Actualizar</button>
+    </form>
 @endsection
 
 

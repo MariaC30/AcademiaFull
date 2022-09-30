@@ -24,10 +24,10 @@
                             <input id="fecha" class="form-control" type="date" name="fecha">
                             <div class="form-group">
                                 <label for="imagen">Foto</label>
-                                <input id="imagen" class="form-control" type="file" name="imagen">
+                                <input id="imagen" class="form-control" type="file" name="imagen" accept="image/*">
                                 <div class="form-group">
                                     <label for="Document">Documento identidad</label>
-                                    <input id="Document" class="form-control" type="file" name="Document">
+                                    <input id="Document" class="form-control" type="file" name="Document" accept=".pdf">
 
                                     <br>
                                     <br>

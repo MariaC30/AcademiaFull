@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('primerApellido');
             $table->text('segundoApellido');
             $table->text('genero');
+            $table->text('FotoPerfil');
             $table->unsignedBigInteger('idMunicipioNac');
             $table->unsignedBigInteger('idCursos');
             $table->integer('estratoSocial');

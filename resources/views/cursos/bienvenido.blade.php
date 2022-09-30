@@ -4,6 +4,6 @@
 
 @section('contenido')
 
-<p>Bienvenido a nuestra acedemia</p>
+<p>Bienvenido a nuestra academia</p>
 
 @endsection
