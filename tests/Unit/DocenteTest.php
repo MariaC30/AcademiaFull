@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\Docente;
 use App\Models\User;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class DocenteTest extends TestCase
 {
